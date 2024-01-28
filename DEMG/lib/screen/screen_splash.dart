@@ -46,7 +46,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   backgroundColor: Colors.transparent,
                   body: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Center(),
+                    child: Center(
+                      child: Text("$splashDuration 초 후 페이지 이동")
+                    ),
                   )
                 )
               )
