@@ -1,12 +1,24 @@
 import 'package:demg/screen/screen_home.dart';
+import 'package:demg/screen/screen_start.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: HomeScreen(),
-    )
-  );
+  runApp(Myapp());
 }
 
+class Myapp extends StatelessWidget {
+  const Myapp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Daily EMG",
+      theme: ThemeData(
+        primarySwatch: Colors.lightGreen,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const StartScreen(),
+    );
+  }
+}
 
