@@ -1,14 +1,17 @@
-import 'package:demg/workOut/screen_pre_workOut.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-class DashBoardScreen extends StatefulWidget {
-  const DashBoardScreen({super.key});
+import '../workOut/screen_pre_workOut.dart';
+
+class DashBoardScreenDebug extends StatefulWidget {
+  const DashBoardScreenDebug({super.key});
 
   @override
-  State<DashBoardScreen> createState() => _DashBoardScreenState();
+  State<DashBoardScreenDebug> createState() => _DashBoardScreenDebugState();
 }
 
-class _DashBoardScreenState extends State<DashBoardScreen>
+class _DashBoardScreenDebugState extends State<DashBoardScreenDebug>
     with SingleTickerProviderStateMixin {
   late TabController tabController = TabController(
       length: 4,
@@ -22,30 +25,15 @@ class _DashBoardScreenState extends State<DashBoardScreen>
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-          child: AppBar(),
-          preferredSize: Size.fromHeight(0),
-        ),
-        body: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: _tabBar(),
-            ),
-            Expanded(child: _TabBarView()),
-          ],
-        ));
-  }
-
   Widget _tabBar() {
     return TabBar(
       controller: tabController,
-      tabs: const [Tab(text: "대시보드"), Tab(text: "변화"), Tab(text: "친구") , Tab(text:"랭킹")],
+      tabs: const [
+        Tab(text: "대시보드"),
+        Tab(text: "변화"),
+        Tab(text: "친구"),
+        Tab(text: "랭킹")
+      ],
     );
   }
 
@@ -58,12 +46,15 @@ class _DashBoardScreenState extends State<DashBoardScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("debug mode dash board"),
-              ElevatedButton(onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) => PreWorkOutScreen()),
-                );
-              }, child: Text('운동 시작')
-              )
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              PreWorkOutScreen()),
+                    );
+                  },
+                  child: Text('운동 시작'))
             ],
           ),
         ),
@@ -94,4 +85,8 @@ class _DashBoardScreenState extends State<DashBoardScreen>
       ],
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return
 }

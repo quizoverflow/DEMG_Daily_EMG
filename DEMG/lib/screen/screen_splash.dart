@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:html';
-
 import 'package:demg/screen/screen_dashboard.dart';
+import 'package:demg/screen/screen_dashboard_debug.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  static const int splashDuration = 4;
+  static const int splashDuration = 1;
 
   @override
   void initState(){
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds : splashDuration),
         ()=> Navigator.push(
           context,
-          MaterialPageRoute(builder: (context)=> DashBoardScreen()),
+          MaterialPageRoute(builder: (context)=> const DashBoardScreenDebug()),
         )
     );
   }
@@ -28,33 +28,79 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Container(
-      decoration : BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('asset/debug_img/splash.png'),
-          fit: BoxFit.contain),
+    return
+      /*Container(
+        width: 412,
+        height: 892,
+        clipBehavior: Clip.antiAlias,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
         ),
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: 0.0,
-              left: 0.0,
-              child: Container(
-                width: width,
-                height: height,
-                child: Scaffold(
-                  backgroundColor: Colors.transparent,
-                  body: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text("$splashDuration 초 후 페이지 이동")
-                    ),
-                  )
-                )
-              )
-            )
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 175,
+              padding: const EdgeInsets.only(top: 36, bottom: 37.34),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset('asset/img/splash_wave_signal.svg',fit:BoxFit.fitWidth)
+                ,
+                ],
+              ),
+            ),
+            const SizedBox(height: 52),
+            SizedBox(
+              width: 115,
+              height: 37,
+              child: Text(
+                'DEMG  ',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 32,
+                  fontFamily: 'SUIT',
+                  fontWeight: FontWeight.w700,
+                  height: 0,
+                ),
+              ),
+            ),
           ],
-        )
-      );
+        ),
+      );*/
+      Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+        children: [
+          Container(
+            width: 437.5,
+            height: 200,
+            child: SvgPicture.asset('asset/img/splash_wave_signal.svg',fit:BoxFit.fitWidth),
+          )
+        ],
+      ),
+        Text(
+            "DEMG  ",
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w700,
+              color: Colors.black
+            ),
+
+        ),
+      ],
+    );
   }
 }

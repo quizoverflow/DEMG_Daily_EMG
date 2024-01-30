@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PreWorkOutScreen extends StatelessWidget {
-  const PreWorkOutScreen({super.key})
+  PreWorkOutScreen(){super.key;}
   @override
   Widget build(BuildContext context) {
     return Container(
