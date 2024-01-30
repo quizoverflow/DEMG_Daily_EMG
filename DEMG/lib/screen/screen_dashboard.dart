@@ -38,6 +38,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
               child: _tabBar(),
             ),
             Expanded(child: _TabBarView()),
+
           ],
         ));
   }
