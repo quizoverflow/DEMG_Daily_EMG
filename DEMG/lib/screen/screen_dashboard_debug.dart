@@ -1,7 +1,11 @@
+import 'package:demg/menu/menu_change.dart';
+import 'package:demg/menu/menu_friends.dart';
+import 'package:demg/menu/menu_ranking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../menu/menu_dashboard.dart';
 import '../workOut/screen_pre_workOut.dart';
 
 class DashBoardScreenDebug extends StatefulWidget {
@@ -41,119 +45,80 @@ class _DashBoardScreenDebugState extends State<DashBoardScreenDebug>
     return TabBarView(
       controller: tabController,
       children: [
+        DashBoardMenu(context),
+        ChangeMenu(context),
+        FriendsMenu(context),
+        RankingMenu(context),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        /*appBar: PreferredSize(
+          child: AppBar(),
+          preferredSize: Size.fromHeight(0),
+        ),*/
+        body: Column(
+      children: [
         Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          width: double.infinity,
+          height: 52,
+          margin: const EdgeInsets.only(top: 30),
+          child: Stack(
             children: [
-              Text("debug mode dash board"),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              PreWorkOutScreen()),
-                    );
-                  },
-                  child: Text('운동 시작'))
+              Positioned(
+                left: 0,
+                top: 0,
+                child: Container(
+                  width: 412,
+                  height: 52,
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                ),
+              ),
+              Positioned(
+                left: 20,
+                top: 14,
+                child: SizedBox(
+                  width: 68,
+                  height: 24,
+                  child: Text(
+                    'DEMG',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontFamily: 'SUIT',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 15,
+                top: 10,
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(),
+                  child: Stack(children: [
+                    SvgPicture.asset("asset/img/small_wave_signal.svg"),
+                  ]),
+                ),
+              ),
             ],
           ),
         ),
         Container(
-            alignment: Alignment.center,
-            child: Text(
-              '변화',
-              style: TextStyle(
-                fontSize: 60,
-              ),
-            )),
-        Container(
-            alignment: Alignment.center,
-            child: Text(
-              '친구',
-              style: TextStyle(
-                fontSize: 60,
-              ),
-            )),
-        Container(
-            alignment: Alignment.center,
-            child: Text(
-              '랭킹',
-              style: TextStyle(
-                fontSize: 60,
-              ),
-            )),
-      ],
-    );
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-          child: AppBar(),
-          preferredSize: Size.fromHeight(0),
+          decoration: BoxDecoration(
+            border: Border.all(),
+          ),
+          child: _tabBar(),
         ),
-        body:
-        Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 52,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Container(
-                      width: 412,
-                      height: 52,
-                      decoration: BoxDecoration(color: Colors.white),
-                    ),
-                  ),
-                  Positioned(
-                    left: 20,
-                    top: 14,
-                    child: SizedBox(
-                      width: 68,
-                      height: 24,
-                      child: Text(
-                        'DEMG',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontFamily: 'SUIT',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 360,
-                    top: 10,
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(),
-                      child: Stack(children: [
-                          SvgPicture.asset("asset/img/small_wave_signal.svg"),
-                          ]),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: _tabBar(),
-            ),
-            Expanded(child: _TabBarView()),
-          ],
-
-        )
-    );
+        Expanded(child: _TabBarView()),
+      ],
+    ));
   }
-
 }
