@@ -27,7 +27,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
     return Scaffold(
         appBar: PreferredSize(
           child: AppBar(),
-          preferredSize: Size.fromHeight(0),
+          preferredSize: const Size.fromHeight(0),
         ),
         body: Column(
           children: [
@@ -58,19 +58,19 @@ class _DashBoardScreenState extends State<DashBoardScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("debug mode dash board"),
+              const Text("debug mode dash board"),
               ElevatedButton(onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) => PreWorkOutScreen()),
                 );
-              }, child: Text('운동 시작')
+              }, child: const Text('운동 시작')
               )
             ],
           ),
         ),
         Container(
             alignment: Alignment.center,
-            child: Text(
+            child: const Text(
               '변화',
               style: TextStyle(
                 fontSize: 60,
@@ -78,7 +78,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
             )),
         Container(
             alignment: Alignment.center,
-            child: Text(
+            child: const Text(
               '친구',
               style: TextStyle(
                 fontSize: 60,
@@ -86,7 +86,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
             )),
         Container(
             alignment: Alignment.center,
-            child: Text(
+            child: const Text(
               '랭킹',
               style: TextStyle(
                 fontSize: 60,
