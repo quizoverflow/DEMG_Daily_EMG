@@ -1,9 +1,18 @@
+//import 'dart:ffi';
+
+import 'package:android_intent/android_intent.dart';
 import 'package:demg/themeSet/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../workOut/screen_pre_workOut.dart';
 
 Container DashBoardMenu(BuildContext context) {
+  void openAndroidSettins() async{
+    AndroidIntent intent = AndroidIntent(
+      action: 'android.settings.BLUETOOTH_SETTINGS',
+    );
+    await intent.launch();
+  }
   return Container(
     padding: EdgeInsets.only(top: 30),
     color: Colors.transparent,
@@ -37,7 +46,9 @@ Container DashBoardMenu(BuildContext context) {
                     child: const Text('운동 시작'),
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        openAndroidSettins();
+                      },
                       style: FilledButton.styleFrom(
                         backgroundColor: AppTheme().themeColor(),
                         fixedSize: const Size(170, 44),
@@ -61,8 +72,8 @@ Container DashBoardMenu(BuildContext context) {
               child: Column(
                 children: [
                   Text(
-                    "오늘 운동 스코어",
-                    style: TextStyle(fontSize: 20),
+                    "오늘 운동 SCORE",
+                    style: TextStyle(fontSize: 15),
                   ),
                   Container(
                       color: Colors.transparent,
@@ -164,7 +175,7 @@ Container DashBoardMenu(BuildContext context) {
         ),
         Container(
             width: 350,
-            height: 240,
+            height: 300,
             margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11.8),

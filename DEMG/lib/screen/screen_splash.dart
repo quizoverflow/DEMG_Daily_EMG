@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:demg/screen/screen_dashboard.dart';
-import 'package:demg/screen/screen_dashboard_debug.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
         () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const DashBoardScreenDebug()),
+                  builder: (context) => const DashBoardScreen()),
             ));
   }
 
@@ -44,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
           Text(
-            "DEMG  ",
+            "DEMG",
             style: TextStyle(
                 fontSize: 32, fontWeight: FontWeight.w700, color: Colors.black),
           ),
