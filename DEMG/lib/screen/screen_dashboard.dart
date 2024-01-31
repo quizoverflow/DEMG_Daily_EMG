@@ -101,15 +101,19 @@ class _DashBoardScreenState extends State<DashBoardScreen>
               Positioned(
                 right: 15,
                 top: 10,
-                child: Container(
-                  width: 32,
-                  height: 32,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(children: [
-                    SvgPicture.asset("asset/img/small_wave_signal.svg"),
-                  ]),
-                ),
+                child:Hero(
+                  tag: 'signal-tag',
+                  child:Container(
+                    width: 32,
+                    height: 32,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(),
+                    child: Stack(children: [
+                      SvgPicture.asset("asset/img/small_wave_signal.svg"),
+                    ]),
+                  ),
+                )
+
               ),
             ],
           ),

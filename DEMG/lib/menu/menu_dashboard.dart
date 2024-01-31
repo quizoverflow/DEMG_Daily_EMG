@@ -8,11 +8,12 @@ import '../workOut/screen_pre_workOut.dart';
 
 Container DashBoardMenu(BuildContext context) {
   void openAndroidSettins() async{
-    AndroidIntent intent = AndroidIntent(
+    AndroidIntent intent = const AndroidIntent(
       action: 'android.settings.BLUETOOTH_SETTINGS',
     );
     await intent.launch();
   }
+
   return Container(
     padding: EdgeInsets.only(top: 30),
     color: Colors.transparent,
@@ -33,9 +34,7 @@ Container DashBoardMenu(BuildContext context) {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                PreWorkOutScreen()),
+                          AppTheme().createPageRoute(PreWorkOutScreen()),
                       );
                     },
                     style: FilledButton.styleFrom(
