@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 
 // 앱 테마 컬러 설정
 class AppTheme{
+  //디버그용 타이밍 설정
+  final int waitTimeMilli = 500;
+  final int waitTimeSecond = 1;
   // 앱 테마 색깔 설정
   Color themeColor({String color = 'blue'}){
     if(color == 'blue'){

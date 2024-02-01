@@ -1,50 +1,60 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
+import 'package:demg/workOut/screen_while_workOut.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../themeSet/app_theme.dart';
 
-class PreWorkOutScreen extends StatefulWidget {
-  const PreWorkOutScreen({super.key});
 
+class PreWorkOutScreen extends StatefulWidget {
   @override
-  State<PreWorkOutScreen> createState() => _PreWorkOutScreenState();
+  _PreWorkOutScreenState createState() => _PreWorkOutScreenState();
 }
 
 class _PreWorkOutScreenState extends State<PreWorkOutScreen> {
-  final List<String> workOutInstruction = [
+  List<String> workOutInstruction = [
     '측정 하고자 하는 근육에 디바이스를 부착하세요',
     '측정 부위가 젖어 있다면 닦아주세요',
     '불편하지 않는 선에서 스트랩을 단단히 조여주세요',
+    '이제 측정을 시작합니다',
   ];
+
   int currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    _startLoop();
+    _startAnimation();
+    Timer(
+      Duration(milliseconds: AppTheme().waitTimeMilli * workOutInstruction.length),
+        (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WhileWorkOutScreen())
+        );
+        }
+    );
   }
 
-  void _startLoop() {
-    Future.delayed(Duration(seconds: 2), () {
+  void _startAnimation() {
+    Future.delayed(Duration(milliseconds: AppTheme().waitTimeMilli), () {
       setState(() {
         currentIndex = (currentIndex + 1) % workOutInstruction.length;
       });
-      _startLoop();
+      _startAnimation();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppTheme().themeColor(),
-        body: Stack(
-          children: [
-            Positioned(
-              top: 100,
-              left: 95,
-              child: Container(
-                margin: EdgeInsets.only(top: 100),
+      backgroundColor: AppTheme().themeColor(),
+      body: Center(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 230),
                 child: Hero(
                   tag: 'signal-tag',
                   child: SvgPicture.asset(
@@ -53,38 +63,19 @@ class _PreWorkOutScreenState extends State<PreWorkOutScreen> {
                   ),
                 ),
               ),
-            ),
-            Positioned(
-                top: 500,
-                left: 0,
-                child: SizedBox(
-/*                  width: double.infinity,
-                  height: double.infinity,*/
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Wrap(children: [
-                        FadeInDown(
-                          child: Text(
-                            workOutInstruction[0],
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w400),
-                          ),
-                          duration: Duration(seconds: 1),
-                        ),
-                        FadeInDown(
-                          child: Text(
-                            workOutInstruction[1],
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w400),
-                          ),
-                          duration: Duration(seconds: 1),
-                        )
-                      ])
-                    ],
-                  ),
-                ))
-          ],
-        ));
+              SizedBox(height: 30),
+              AnimatedOpacity(
+                opacity: currentIndex < workOutInstruction.length ? 1.0 : 0.0,
+                duration: Duration(seconds: 2),
+                child: Text(
+                  workOutInstruction[currentIndex],
+                  style: TextStyle(fontSize: 14.0),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          )
+      ),
+    );
   }
 }
