@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../workOut/screen_pre_workOut.dart';
 
-Container DashBoardMenu(BuildContext context) {
+Container DashBoardMenu(BuildContext context,String username){
   void openAndroidSettins() async{
     AndroidIntent intent = const AndroidIntent(
       action: 'android.settings.BLUETOOTH_SETTINGS',
@@ -111,7 +111,7 @@ Container DashBoardMenu(BuildContext context) {
                 children: [
                   Column(children: [
                     Text(
-                      "최근 운동 시간",
+                      "$username님의 최근 운동 시간",
                       style: TextStyle(fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: 5),
@@ -192,7 +192,7 @@ Container DashBoardMenu(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "운동 종류",
+                    "운동 현황",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(height: 15),

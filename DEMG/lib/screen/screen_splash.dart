@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:demg/screen/screen_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,13 +15,23 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
+    _loadUserData();
+    /*Timer(
         Duration(seconds: splashDuration),
         () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const DashBoardScreen()),
-            ));
+                  builder: (context) => const DashBoardScreen(username: 'null',)),
+            ));*/
+  }
+  void _loadUserData() async{
+    await Future.delayed(Duration(seconds: splashDuration));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString('username') ?? '사용자';
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => DashBoardScreen(username : username))
+    );
   }
 
   @override
@@ -42,11 +53,13 @@ class _SplashScreenState extends State<SplashScreen> {
               )
             ],
           ),
-          Text(
+          const Text(
             "DEMG",
             style: TextStyle(
                 fontSize: 32, fontWeight: FontWeight.w700, color: Colors.black),
           ),
+          const SizedBox(height: 40),
+          const CircularProgressIndicator(),
         ],
       ),
     );

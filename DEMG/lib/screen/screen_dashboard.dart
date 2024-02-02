@@ -10,7 +10,8 @@ import '../menu/menu_dashboard.dart';
 import '../workOut/screen_pre_workOut.dart';
 
 class DashBoardScreen extends StatefulWidget {
-  const DashBoardScreen({super.key});
+  final String username;
+  const DashBoardScreen({super.key, required this.username});
 
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
@@ -48,7 +49,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
     return TabBarView(
       controller: tabController,
       children: [
-        DashBoardMenu(context),
+        DashBoardMenu(context,widget.username),
         ChangeMenu(context),
         FriendsMenu(context),
         RankingMenu(context),
@@ -80,7 +81,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
                   decoration: const BoxDecoration(color: Colors.transparent),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 20,
                 top: 14,
                 child: SizedBox(
@@ -99,9 +100,45 @@ class _DashBoardScreenState extends State<DashBoardScreen>
                 ),
               ),
               Positioned(
-                right: 15,
-                top: 10,
-                child:Hero(
+                  right: 15,
+                  top: 10,
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            AppTheme().createPageRoute(PreWorkOutScreen()),
+                          );
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: AppTheme().themeColor(),
+                          fixedSize: const Size(75, 10),
+                          shape: const StadiumBorder(),
+                        ),
+                        child: const Text(
+                          '정보 수정',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Hero(
+                        tag: 'signal-tag',
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(),
+                          child: Stack(children: [
+                            SvgPicture.asset("asset/img/small_wave_signal.svg"),
+                          ]),
+                        ),
+                      )
+                    ],
+                  )
+                  /*child:Hero(
                   tag: 'signal-tag',
                   child:Container(
                     width: 32,
@@ -112,9 +149,9 @@ class _DashBoardScreenState extends State<DashBoardScreen>
                       SvgPicture.asset("asset/img/small_wave_signal.svg"),
                     ]),
                   ),
-                )
+                )*/
 
-              ),
+                  ),
             ],
           ),
         ),
