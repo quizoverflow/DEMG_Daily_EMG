@@ -59,16 +59,13 @@ class _DashBoardScreenState extends State<DashBoardScreen>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        /*appBar: PreferredSize(
-          child: AppBar(),
-          preferredSize: Size.fromHeight(0),
-        ),*/
         body: Column(
       children: [
         Container(
           width: double.infinity,
-          height: 52,
+          height: 55,
           margin: const EdgeInsets.only(top: 30),
           child: Stack(
             children: [
@@ -106,17 +103,16 @@ class _DashBoardScreenState extends State<DashBoardScreen>
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            AppTheme().createPageRoute(PreWorkOutScreen()),
-                          );
+                          //사용자 정보 수정 페이지 만들어야 함
+
                         },
                         style: FilledButton.styleFrom(
                           backgroundColor: AppTheme().themeColor(),
-                          fixedSize: const Size(75, 10),
+                          fixedSize: const Size(75, 9),
                           shape: const StadiumBorder(),
                         ),
-                        child: const Text(
-                          '정보 수정',
+                        child: Text(
+                          '${widget.username} 님',
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
