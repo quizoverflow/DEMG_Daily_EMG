@@ -1,6 +1,7 @@
 import 'package:demg/workOut/screen_post_workOut.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../themeSet/app_theme.dart';
 
@@ -14,6 +15,9 @@ class WhileWorkOutScreen extends StatefulWidget {
 class _WhileWorkOutScreenState extends State<WhileWorkOutScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
     return Scaffold(
       body: Column(
         children: [
